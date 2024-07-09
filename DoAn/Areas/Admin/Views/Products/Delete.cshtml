@@ -1,0 +1,36 @@
+﻿@model DoAn.Models.SanPham
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayoutPage.cshtml";
+}
+
+<div class="span9">
+    <h3>Xóa sản phẩm</h3>
+    <div class="well">
+        @using (Html.BeginForm("Delete", "Products", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/dorm-data", @class = "form-horizontal", @style = "margin: 0px 160px 20px;" }))
+        {
+            <h4>Xóa</h4>
+            @Html.TextBoxFor(r => r.TenSP, new { @type = "hidden" })
+            <div class="control-group">
+                @Html.LabelFor(r => r.TenSP, "Tên sản phẩm", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.TenSP, new { @class = "form-control", placeholder = "Tên sản phẩm" })
+
+                </div>
+            </div>
+
+            <div class="control-group">
+
+                @Html.LabelFor(r => r.MaSp, "Mã sản phẩm", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.MaSp, new { @class = "form-control", placeholder = "Mã Sản Phẩm" })
+
+                </div>
+            </div>
+            
+            <button class="btn btn-success">Xóa</button>
+            <a href="/Admin/products/index" class="btn btn-danger">Hủy</a>
+
+        }
+    </div>
+</div>

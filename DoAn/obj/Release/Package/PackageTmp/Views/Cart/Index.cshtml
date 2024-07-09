@@ -1,0 +1,178 @@
+﻿@model List<DoAn.Models.Cart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LoginPage.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Quantity</th>
+        <th>Delete Pro</th>
+        <th>Tol. Price</th>
+    </tr>
+    @{
+        int i = 1;
+        int totPrice = 0;
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaSp</td>
+            <td>@item.SanPham.TenSP</td>
+            <td><img src="@item.SanPham.Anh" style="width: 50%; height: 175px" /></td>
+            <td>
+                @using (Html.BeginForm("UpdateQuantity", "Cart", FormMethod.Get))
+                {
+                    <input type="number" name="quan" value="@item.Quantity" min="1" style="width: 60px;" />
+                    <input type="hidden" name="proid" value="@item.MaSp" />
+                    <input type="submit" value="Update" class="btn btn-warning" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("DeletePro", "Cart", FormMethod.Post))
+                {
+                    @Html.Hidden("id", item.MaSp)
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                }
+            </td>
+            <td>
+                @{
+                    int Price = (int)(item.Quantity * item.SanPham.GiaBan);
+                    totPrice += Price;
+                    i++;
+                }
+                @Price.ToString("N0") VNĐ
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="5" class="text-center fw-bold">Tổng tiền</td>
+        <td>@totPrice.ToString("N0") VNĐ</td>
+        <td colspan="5" style="text-align:right"><button class="btn btn-primary" onclick="myfunction()">Thanh toán</button></td>
+    </tr>
+</table>
+
+<p>
+    <a href="/Sanpham/index" class="btn btn-warning">Tiếp tục mua hàng</a>
+</p>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+        <!-- Right -->
+        <div>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>Nahn Furniture
+                    </h6>
+                    <p>
+                        The product is for illustrative purposes only, using images from other websites
+                    </p>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Products
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Bedroom Furniture</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Dining room interior</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Living room's furniture</a>
+                    </p>
+                    <p>
+                    </p>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Pricing</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Loggin</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Orders</a>
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3"></i> 186 An Ninh, Hội An, Chợ Mới, An Giang </p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i>
+                        hieunhanag2003@gmail.com
+                    </p>
+                    <p><i class="fas fa-phone me-3"></i> + 0976071170</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="#">haha.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<script>
+    myfunction = function () {
+        alert("Thanh toán thành công");
+    }
+</script>

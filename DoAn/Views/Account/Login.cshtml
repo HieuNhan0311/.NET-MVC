@@ -1,0 +1,33 @@
+﻿@model DoAn.ViewModel.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/LoginPage.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div class="row w-25 mx-auto">
+        <div class="col-md-12">
+            @Html.LabelFor(x => x.User)
+            @Html.TextBoxFor(x => x.User, new { placeholder = "Username", @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.User)
+        </div>
+
+        <div class="col-md-12">
+            @Html.LabelFor(x => x.Password)
+            @Html.PasswordFor(x => x.Password, new { placeholder = "Password", @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+    </div>
+
+    <div class="row w-25 mx-auto">
+        <div class="col-md-12">
+            @Html.ValidationSummary()
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success">Register</button>
+        </div>
+    </div>
+}

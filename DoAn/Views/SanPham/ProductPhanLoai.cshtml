@@ -1,0 +1,38 @@
+﻿@model List<DoAn.Models.SanPham>
+@{
+    ViewBag.Title = "ProductPhanLoai";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm("ProductPhanLoai", "SanPham", FormMethod.Get, new { id = "myform" }))
+{
+    <p>
+        @Html.DropDownList("sortOrder", new List<SelectListItem>
+           {
+               new SelectListItem{Text="Sắp xếp theo tên", Value="namesp"},
+               new SelectListItem{Text="Sắp xếp theo mã", Value="masp"},
+               new SelectListItem{Text="Sắp xếp theo số lượng tồn", Value="slt"}
+
+           }, "Chọn cách sắp xếp")
+    </p>
+}
+
+
+<div>
+    <div class="products" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; align-items: flex-start; padding-top: 25px">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 35rem; margin-bottom: 30px; padding-bottom: 15px; ">
+                <img class="card-img-top" src="@Html.DisplayFor(x => item.Anh)" alt="Card image cap" style="width:100%; height:350px;">
+                <div class="card-body">
+                    <h4 class="card-title">ID: @Html.DisplayFor(x => item.MaSp)</h4>
+                    <h5 class="card-title">@Html.DisplayFor(x => item.TenSP)</h5>
+                    <h3 class="card-title>">Số lượng tồn: @Html.DisplayFor(x => item.SLTon)</h3>
+                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="/SanPham/Detail/@item.MaSp" class="btn btn-primary">Go detail</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

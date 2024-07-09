@@ -1,0 +1,107 @@
+﻿@model DoAn.Models.SanPham
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/adminLayoutPage.cshtml";
+}
+
+
+
+<div class="span9">
+    <h3>Sửa sản phẩm</h3>
+    <div class="well">
+        @using (Html.BeginForm("Edit", "Products", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/dorm-data", @class = "form-horizontal", @style = "margin: 0px 160px 20px;" }))
+        {
+            <div class="control-group">
+
+                @*<lable class="control-label" for="ProductName">Product Name</lable>*@
+                @Html.LabelFor(r => r.TenSP, "Tên sản phẩm", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.TenSP, new { @class = "form-control", placeholder = "Tên sản phẩm" })
+
+                    @*<input type="text"
+                    name="ProductName"
+                    value="ProductName"
+                    placeholder="Product Name"
+                    class="form-control" />*@
+                </div>
+                @Html.ValidationMessageFor(r => r.TenSP)
+            </div>
+
+            @*<div class="control-group">
+
+                @Html.LabelFor(r => r.Anh, "Ảnh", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.Anh, new { @class = "form-control", type = "file", placeholder = "Ảnh" })
+                </div>
+                @Html.ValidationMessageFor(r => r.Anh)
+            </div>*@
+
+
+            <div class="control-group">
+                @Html.LabelFor(r => r.MaLoai, "Mã loại", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(row => row.MaLoai,
+                     new SelectList(ViewBag.Loai, "MaLoai", "TenLoai"),
+                     "Vui lòng chọn...", new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(r => r.MaLoai)
+            </div>
+            <div class="control-group">
+
+                @Html.LabelFor(r => r.MoTa, "Mô tả ngắn", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(r => r.MoTa, new { @class = "form-control", placeholder = "Mô tả ngắn", rows = "3", cols = "50" })
+
+                </div>
+            </div>
+            <div class="control-group">
+
+                @Html.LabelFor(r => r.GiaBan, "Giá sản phẩm", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.GiaBan, new { @class = "form-control", placeholder = "Giá sản phẩm", type = "number" })
+                </div>
+                @Html.ValidationMessageFor(r => r.GiaBan)
+            </div>
+
+            <div class="control-group">
+
+                @Html.LabelFor(r => r.SLTon, "Số lượng tồn", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.SLTon, new { @class = "form-control", placeholder = "Số lượng tồn", type = "number" })
+                </div>
+                @Html.ValidationMessageFor(r => r.SLTon)
+            </div>
+
+            <div class="control-group">
+
+                @Html.LabelFor(r => r.KichThuoc, "Kích thước", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.KichThuoc, new { @class = "form-control", placeholder = "Kích thước" })
+                </div>
+                @Html.ValidationMessageFor(r => r.KichThuoc)
+            </div>
+
+            <div class="control-group">
+
+                @Html.LabelFor(r => r.DVT, "Đơn vị tính", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(r => r.DVT, new { @class = "form-control", placeholder = "Đơn vị tính" })
+                </div>
+                @Html.ValidationMessageFor(r => r.DVT)
+            </div>
+
+
+
+            <button class="btn btn-success">Lưu</button>
+            @*<input type="submit" name="name" value="Cập nhật sản phẩm" class="btn btn-primary" />*@
+            <a href="/admin/products/index" class="btn btn-danger">Hủy</a>
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
